@@ -1,0 +1,410 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fff;
+    color:#0f1419;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:250px 1fr 350px;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    border-right:1px solid #eee;
+    padding:20px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y: scroll;
+}
+
+.logo{
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+.sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.sidebar nav a{
+    text-decoration:none;
+    color:#000;
+    font-size:20px;
+    padding:12px;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.sidebar nav a:hover{
+    background:#f1f1f1;
+}
+
+.sidebar i{
+    margin-right:15px;
+}
+
+.tweet-btn{
+    width:100%;
+    padding:15px;
+    margin-top:25px;
+    border:none;
+    border-radius:30px;
+    background:#1d9bf0;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+/* MAIN FEED */
+
+.feed{
+    border-right:1px solid #eee;
+}
+
+.feed-header{
+    padding:18px;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    background:white;
+}
+
+.tweet-box{
+    display:flex;
+    gap:15px;
+    padding:20px;
+    border-bottom:1px solid #eee;
+}
+
+.tweet-box img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+.tweet-input{
+    width:100%;
+}
+
+textarea{
+    width:100%;
+    border:none;
+    resize:none;
+    height:80px;
+    font-size:20px;
+    outline:none;
+}
+
+.tweet-input button{
+    float:right;
+    padding:10px 25px;
+    border:none;
+    background:#1d9bf0;
+    color:white;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+/* TWEETS */
+
+.tweet{
+    display:flex;
+    gap:15px;
+    padding:20px;
+    border-bottom:1px solid #eee;
+}
+
+.tweet img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+.tweet-content{
+    flex:1;
+}
+
+.tweet-content h4{
+    margin-bottom:10px;
+}
+
+.tweet-content span{
+    color:gray;
+    font-weight:normal;
+}
+
+.tweet-actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+    color:gray;
+}
+
+.tweet-actions i{
+    cursor:pointer;
+}
+
+.tweet-actions i:hover{
+    color:#1d9bf0;
+}
+
+/* RIGHT SIDEBAR */
+
+.right-sidebar{
+    padding:20px;
+}
+
+.right-sidebar input{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#eff3f4;
+    border-radius:25px;
+    margin-bottom:20px;
+}
+
+.trending,
+.follow{
+    background:#f7f9f9;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.trending h3,
+.follow h3{
+    margin-bottom:15px;
+}
+
+.trending p,
+.follow p{
+    margin:12px 0;
+    cursor:pointer;
+}
+
+.trending p:hover,
+.follow p:hover{
+    color:#1d9bf0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.container{
+    grid-template-columns:80px 1fr;
+}
+
+.right-sidebar{
+    display:none;
+}
+
+.sidebar a{
+    font-size:0;
+}
+
+.sidebar i{
+    font-size:24px;
+    margin:0;
+}
+
+.logo{
+    text-align:center;
+}
+
+}
+
+@media(max-width:700px){
+
+.container{
+    grid-template-columns:1fr;
+}
+
+.sidebar{
+    display:none;
+}
+
+.feed{
+    border:none;
+}
+
+}
+
+
+/* ------------------------------------------------------- */
+/* ------------------------------------------------------- */
+
+
+/* Hide the radio buttons */
+.tab-input { 
+  display: none; 
+}
+
+/* Tab container - sticky like real X */
+.tabs {
+  display: flex;
+  border-bottom: 0.25px solid #f1f1f1;
+  position: sticky;
+  top: 0;
+  background: white;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+/* Tab labels */
+.tab-label {
+  flex: 1;
+  text-align: center;
+  padding: 16px 0;
+  font-weight: 700;
+  font-size: 15px;
+  color: #71767b;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.tab-label:hover {
+  background: #f1f1f1;
+
+}
+
+/* Active tab underline - hidden by default */
+.tab-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 4px;
+  background: #1d9bf0;
+  border-radius: 9999px;
+}
+
+/* Show underline + white text when checked */
+#for-you:checked ~ .tab-label[for="for-you"] { 
+  color: #fff; 
+}
+#for-you:checked ~ .tab-label[for="for-you"] .tab-underline { 
+  display: block; 
+}
+
+#following:checked ~ .tab-label[for="following"] { 
+  color: #fff; 
+}
+#following:checked ~ .tab-label[for="following"] .tab-underline { 
+  display: block; 
+}
+
+/* Tab content panels */
+.tab-content { 
+  display: none; 
+  padding: 16px;
+  color: #e7e9ea;
+  line-height: 1.5;
+}
+#for-you:checked ~ #content-for-you { display: block; }
+#following:checked ~ #content-following { display: block; }
+
+/* extra icons---------------------------------------------------------- */
+/* ---------------------------------------------------------------------- */
+/* Composer */
+.composer {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f5a2f; /* That green S from your pic */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+}
+.composer-body { flex: 1; }
+.composer-body textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: var(--text-color);
+  font-family: inherit;
+  resize: none;
+  margin-bottom: 12px;
+}
+.composer-body textarea::placeholder { color: #71767b; }
+
+.composer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.composer-icons { display: flex; gap: 2px; }
+.composer-icons button {
+  background: transparent;
+  border: none;
+  color: #888f94; /* X blue */
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.composer-icons button:hover { background: rgba(87, 88, 89, 0.1); }
+.composer-icons button[disabled] { color: #3d4a56; cursor: not-allowed; }
+
+.post-btn {
+  background: #1d9bf0;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Show posts bar */
+.show-posts-bar {
+  text-align: center;
+  padding: 16px;
+  color: #1d9bf0;
+  font-size: 15px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.show-posts-bar:hover { background: var(--hover-bg);
+ background: #e7e9ea; }
+
+.gif-btn {
+  font-weight: 700;
+  font-size: 12px;
+  border: 1.5px solid #1d9bf0;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #1d9bf0;
+}

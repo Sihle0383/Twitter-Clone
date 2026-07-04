@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Clone</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2 class="logo">
+            <i class="fa-brands fa-x-twitter"></i>
+        </h2>
+
+        <nav>
+
+            <a href="#" class="active">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Explore
+            </a>
+
+            <a href="#">
+                <i class="fa-regular fa-bell"></i>
+                Notifications
+            </a>
+
+            <a href="#">
+                <i class="fa-regular fa-envelope"></i>
+                Messages
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-user-group"></i>
+                Communities
+            </a>
+
+            <a href="#">
+                <i class="fa-regular fa-bookmark"></i>
+                Bookmarks
+            </a>
+
+            <a href="#">
+                <i class="fa-regular fa-user"></i>
+                Profile
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-circle-notch"></i>
+                Grok
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-user-plus"></i>
+                follow
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-ellipsis"></i>
+                Messages
+            </a>
+
+        </nav>
+
+        <button class="tweet-btn">Post</button>
+
+    </aside>
+
+    <!-- MAIN FEED -->
+
+    <main class="feed">
+
+       
+        <!-- Tab Buttons -->
+    <div class="tabs">
+      <label for="for-you" class="tab-label">
+        For you
+        <span class="tab-underline"></span>
+      </label>
+      <label for="following" class="tab-label">
+        Following
+        <span class="tab-underline"></span>
+      </label>
+    </div>
+
+                <!-- Tweet Box -->
+
+        <section class="tweet-box">
+
+            <img src="https://lh3.google.com/u/0/ogw/AF2bZygCMEAUpQeJ2R9kBTpxWB_wV14EXdSCKdIpExOJA0q4ag=s64-c-mo" alt="avatar">
+
+            <div class="tweet-input">
+
+                <textarea placeholder="What's happening?"></textarea>
+
+                <!-- extra icons ---------------------------->
+                <!-- ------------------------------------ -->
+                           <button>Post</button>
+                 
+                 <div class="composer-actions">
+        <div class="composer-icons">
+        <button title="Media"><i class="fa-regular fa-image"></i></button>
+        <button title="GIF"><i class="fa-solid fa-gif"></i>GIF</button> <!-- Use text if FA doesn't have it -->
+        <button title="Poll"><i class="fa-solid fa-square-poll-vertical"></i></button>
+        <button title="Emoji"><i class="fa-regular fa-face-smile"></i></button>
+        <button title="Schedule"><i class="fa-regular fa-calendar"></i></button>
+        <button title="Location" disabled><i class="fa-solid fa-location-dot"></i></button>
+        <button title="Flag"><i class="fa-regular fa-flag"></i></button>
+      </div>
+    </div>
+    
+       <!-- Show new posts bar -->
+<div class="show-posts-bar">
+  Show 35 posts
+</div>
+</div>
+
+
+
+        </section>
+
+        <!-- Tweets -->
+
+        <section class="tweets">
+
+            <article class="tweet">
+
+                <img src="https://i.pravatar.cc/51">
+
+                <div class="tweet-content">
+
+                    <h4>
+                        Elon Musk
+                        <span>@elonmusk · 2h</span>
+                    </h4>
+
+                    <p>Welcome to the Twitter Clone project 🚀</p>
+
+                    <div class="tweet-actions">
+
+                        <i class="fa-regular fa-comment"></i>
+
+                        <i class="fa-solid fa-retweet"></i>
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="tweet">
+
+                <img src="https://i.pravatar.cc/52">
+
+                <div class="tweet-content">
+
+                    <h4>
+                        OpenAI
+                        <span>@OpenAI · 5h</span>
+                    </h4>
+
+                    <p>Building beautiful interfaces makes users happy.</p>
+
+                    <div class="tweet-actions">
+
+                        <i class="fa-regular fa-comment"></i>
+
+                        <i class="fa-solid fa-retweet"></i>
+
+                        <i class="fa-regular fa-heart"></i>
+
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+
+    <aside class="right-sidebar">
+
+        <input
+            type="text"
+            placeholder="Search Twitter">
+
+        <div class="trending">
+
+            <h3>What's happening</h3>
+
+            <p>#JavaScript</p>
+            <p>#HTML</p>
+            <p>#CSS</p>
+            <p>#OpenAI</p>
+
+        </div>
+
+        <div class="follow">
+
+            <h3>Who to follow</h3>
+
+            <p>John Doe</p>
+            <p>Jane Smith</p>
+            <p>Alex Johnson</p>
+
+        </div>
+
+    </aside>
+
+</div>
+
+</body>
+</html>
