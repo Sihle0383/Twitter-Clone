@@ -69,6 +69,14 @@ body{
     cursor:pointer;
 }
 
+.tweet-btn:hover {
+  background: var(--btn-primary-hover);
+}
+
+.tweet-btn:hover {
+  background: var(--btn-primary-hover);
+}
+
 /* MAIN FEED */
 
 .feed{
@@ -156,10 +164,22 @@ textarea{
 
 .tweet-actions i{
     cursor:pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    max-width: 425px;
+    font-size: 18px;
 }
 
 .tweet-actions i:hover{
     color:#1d9bf0;
+}
+
+
+.no {
+    font-size: 13px;
+    font-weight: 90;
+    padding: 4px;
 }
 
 /* RIGHT SIDEBAR */
@@ -340,6 +360,7 @@ textarea{
   justify-content: center;
   font-weight: 700;
   color: #fff;
+  object-fit: cover;
 }
 .composer-body { flex: 1; }
 .composer-body textarea {
@@ -408,3 +429,405 @@ textarea{
   padding: 2px 4px;
   color: #1d9bf0;
 }
+
+/* From Cursor */
+/* ── CSS Variables (for modal + dark mode) ── */
+:root {
+  --bg-color: #fff;
+  --text-color: #0f1419;
+  --text-muted: #536471;
+  --border-color: #cfd9de;
+  --card-bg: #fff;
+  --overlay-bg: rgba(0, 0, 0, 0.45);
+  --input-bg: #fff;
+  --hover-bg: #f7f9f9;
+  --panel-bg: #f7f9f9;        /* trending / follow boxes */
+  --search-bg: #eff3f4;        /* search input */
+  --btn-primary: #1d9bf0;
+  --btn-primary-hover: #1a8cd8;
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+body.dark {
+  --bg-color: #15202b;
+  --text-color: #e7e9ea;
+  --text-muted: #8899a6;
+  --border-color: #38444d;
+  --card-bg: #192734;
+  --overlay-bg: rgba(0, 0, 0, 0.65);
+  --input-bg: #253341;
+  --hover-bg: #22303c;
+  --panel-bg: #192734;
+  --search-bg: #202327;
+  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Apply variables to body when you add body.dark */
+body.dark {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+main.dark {
+    background-color: red;
+}
+
+/* ── Tweet nav link (matches sidebar style) ── */
+.tweet-nav-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 20px;
+  padding: 12px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+body.dark .sidebar nav a,
+body.dark .tweet-nav-link {
+  color: var(--text-color);
+}
+
+.tweet-nav-link:hover {
+  background: var(--hover-bg);
+}
+
+/* ── Modal: hidden by default ── */
+.tweet-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* ── Modal: visible when #tweet-modal is in URL ── */
+.tweet-modal:target {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.tweet-modal:target .tweet-modal-card {
+  animation: modalFadeIn 0.3s ease forwards;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Overlay ── */
+.tweet-modal-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.tweet-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-bg);
+  cursor: default;
+}
+
+/* ── Centered card ── */
+.tweet-modal-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 16px;
+  box-shadow: var(--modal-shadow);
+  padding: 24px;
+  opacity: 0; /* animated in via :target rule above */
+}
+
+.tweet-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tweet-modal-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.tweet-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.tweet-modal-close:hover {
+  background: var(--hover-bg);
+}
+
+/* ── Textarea ── */
+.tweet-modal-form textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  font-size: 20px;
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+}
+
+.tweet-modal-form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.tweet-modal-form textarea:focus {
+  border-bottom-color: var(--btn-primary);
+}
+
+/* ── Actions ── */
+.tweet-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.tweet-modal-cancel {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.tweet-modal-cancel:hover {
+  background: var(--hover-bg);
+}
+
+.tweet-modal-post {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 9999px;
+  background: var(--btn-primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.tweet-modal-post:hover {
+  background: var(--btn-primary-hover);
+}
+
+.tweet-modal-post:active {
+  transform: scale(0.98);
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .tweet-modal-card {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+.tweet-content .tweet-image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  margin-top: 12px;
+  border: 1px solid #38444d;
+  display:grid;
+  height: auto;
+}
+
+/* ── Tweet Composer ── */
+.tweet-composer {
+  display: flex;
+  gap: 15px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eff3f4;
+  background: #fff;
+}
+
+.tweet-composer textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  height: 80px;
+  font-size: 20px;
+  outline: none;
+  background: transparent;
+  color: #0f1419;
+}
+
+.tweet-composer textarea::placeholder {
+  color: #536471;
+}
+
+/* ── Right Sidebar ── */
+.search-bar {
+  width: 100%;
+  background: #eff3f4;
+  border-radius: 9999px;
+  padding: 12px 16px;
+  border: none;
+  outline: none;
+  margin-bottom: 16px;
+  color: #0f1419;
+}
+
+.search-bar::placeholder {
+  color: #536471;
+}
+
+.sidebar-card {
+  background: #f7f9f9;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.sidebar-card h3 {
+  color: #0f1419;
+  margin-bottom: 15px;
+}
+
+.sidebar-card p {
+  color: #536471;
+  margin: 12px 0;
+  cursor: pointer;
+}
+
+.sidebar-card p:hover {
+  color: #1d9bf0;
+}
+
+/* ── Dark Mode ── */
+body.dark {
+  background: #000;
+  color: #e7e9ea;
+}
+
+body.dark .tweet-composer {
+  background: #000;
+  border-bottom: 1px solid #2f3336;
+}
+
+body.dark .tweet-composer textarea {
+  background: transparent;
+  color: #e7e9ea;
+}
+
+body.dark .tweet-composer textarea::placeholder {
+  color: #71767b;
+}
+
+body.dark .sidebar-card {
+  background: #16181c;
+}
+
+body.dark .sidebar-card h3 {
+  color: #e7e9ea;
+}
+
+body.dark .sidebar-card p {
+  color: #71767b;
+}
+
+body.dark .search-bar {
+  background: #202327;
+  color: #e7e9ea;
+  cursor: pointer;
+}
+
+
+body.dark .search-bar::placeholder {
+  color: #71767b;
+}
+
+body.dark .tabs {
+    background-color: #16181c;
+}
+body.dark .tabs:hover {
+    background-color:#16181c;
+  
+}
+
+/* LIGHT MODE */
+.premium-card {
+  background: #f7f9f9;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.premium-card h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f1419;
+  margin-bottom: 8px;
+}
+
+.premium-card p {
+  font-size: 15px;
+  color: #536471;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.subscribe-btn {
+  background: #1da1f2;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.subscribe-btn:hover {
+  background: #0d95e8;
+}
+
+/* DARK MODE */
+body.dark .premium-card {
+  background: #16181c;
+}
+
+body.dark .premium-card h2 {
+  color: #f7f9f9;
+}
+
+body.dark .premium-card p {
+  color: #71767b;
+}
+
