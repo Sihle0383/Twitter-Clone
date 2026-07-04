@@ -23,6 +23,9 @@
             <i class="fa-brands fa-x-twitter"></i>
         </h2>
 
+        <!-- dark theme-toggle -->
+         <button id="theme-toggle" class="theme-btn">🌙</button>
+
         <nav>
 
             <a href="#" class="active">
@@ -463,6 +466,32 @@ Ready for the next reveal? Stay tuned, we're just getting started.
   <a href="#">More ...</a>
   <span>© 2026 Twitter Clone</span>
 </footer>
+
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  // Check if user had dark mode on before
+  if(localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    
+    // Save choice + change icon
+    if(body.classList.contains('dark')) {
+      localStorage.setItem('theme', 'dark');
+      btn.textContent = '☀️';
+    } else {
+      localStorage.setItem('theme', 'light');
+      btn.textContent = '🌙';
+    }
+  });
+</script>
+
 </body>
 
 </html>
