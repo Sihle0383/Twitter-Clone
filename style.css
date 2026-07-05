@@ -860,6 +860,8 @@ body.dark .footer a {
   color: #71767b;
 }
 
+
+/* Dark mode theme toggle */
 .theme-btn {
   background: none;
   border: none;
